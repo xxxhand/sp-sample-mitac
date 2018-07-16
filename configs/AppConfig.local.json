@@ -30,7 +30,7 @@
         "data": {
           "DI1": {
             "valueIndexes": [12],
-            "unit": "ppm"
+            "unit": ""
           },
           "DI2": {
             "valueIndexes": [13],
@@ -43,6 +43,50 @@
           "DI4": {
             "valueIndexes": [15],
             "unit": ""
+          }
+        }
+      },
+      {
+        "typeId": 152,
+        "equipmentName": "NO-CO2",
+        "data": {
+          "lqi": {
+            "valueIndexes": [45],
+            "unit": ""
+          },
+          "temperature": {
+            "valueIndexes": [12, 13],
+            "unit": "°C"
+          },
+          "humidity": {
+            "valueIndexes": [14, 15],
+            "unit": "%RH"
+          },
+          "CO2": {
+            "valueIndexes": [16, 17],
+            "unit": "ppm"
+          }
+        }
+      },
+      {
+        "typeId": 132,
+        "equipmentName": "NO-T&H",
+        "data": {
+          "lqi": {
+            "valueIndexes": [45],
+            "unit": ""
+          },
+          "temperature": {
+            "valueIndexes": [12, 13],
+            "unit": "°C"
+          },
+          "humidity": {
+            "valueIndexes": [14, 15],
+            "unit": "%RH"
+          },
+          "voltage": {
+            "valueIndexes": [16, 17],
+            "unit": "V"
           }
         }
       }
