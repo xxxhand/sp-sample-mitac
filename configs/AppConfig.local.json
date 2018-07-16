@@ -1,0 +1,30 @@
+{
+  "coreModule": {
+    "httpPort": 8080
+  },
+  "udpModule": {
+    "udpPort": 5033,
+    "maxPoolSize": 200,
+    "equipments": [
+      {
+        "typeId": 138,
+        "equipmentName": "NO-DO",
+        "data": {
+          "DO1": 12,
+          "DO2": 13,
+          "DO3": 14
+        }
+      },
+      {
+        "typeId": 135,
+        "equipmentName": "NO-DI",
+        "data": {
+          "DI1": 12,
+          "DI2": 13,
+          "DI3": 14,
+          "DI4": 15
+        }
+      }
+    ]
+  }
+}
