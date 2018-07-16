@@ -10,19 +10,40 @@
         "typeId": 138,
         "equipmentName": "NO-DO",
         "data": {
-          "DO1": 12,
-          "DO2": 13,
-          "DO3": 14
+          "DO1": {
+            "valueIndexes": [12],
+            "unit": ""
+          },
+          "DO2": {
+            "valueIndexes": [13],
+            "unit": ""
+          },
+          "DO3": {
+            "valueIndexes": [14],
+            "unit": ""
+          }
         }
       },
       {
         "typeId": 135,
         "equipmentName": "NO-DI",
         "data": {
-          "DI1": 12,
-          "DI2": 13,
-          "DI3": 14,
-          "DI4": 15
+          "DI1": {
+            "valueIndexes": [12],
+            "unit": "ppm"
+          },
+          "DI2": {
+            "valueIndexes": [13],
+            "unit": ""
+          },
+          "DI3": {
+            "valueIndexes": [14],
+            "unit": ""
+          },
+          "DI4": {
+            "valueIndexes": [15],
+            "unit": ""
+          }
         }
       }
     ]

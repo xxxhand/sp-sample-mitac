@@ -43,16 +43,24 @@ public class EquipmentRecordFactory implements IEquipmentRecordFactory {
         Iterator<String> fieldNames = dataNode.fieldNames();
         String fieldName;
         JsonNode fieldNode;
+        JsonNode valueIndexesNode;
         int nodeIndex = 0;
         ReceiveData receiveData;
 
         while (fieldNames.hasNext()) {
             fieldName = fieldNames.next();
             fieldNode = dataNode.get(fieldName);
+            valueIndexesNode = fieldNode.get("valueIndexes");
+
+            double val = 0;
+            for (JsonNode vd: valueIndexesNode) {
+                val += msg[vd.asInt()];
+            }
 
             receiveData = new ReceiveData.Builder()
                     .withNumber(nodeIndex)
-                    .withValue(String.valueOf(msg[fieldNode.asInt()]))
+                    .withValue(String.valueOf(val))
+                    .withUnit(fieldNode.get("unit").asText())
                     .build();
 
             mapData.put(fieldName, receiveData);
