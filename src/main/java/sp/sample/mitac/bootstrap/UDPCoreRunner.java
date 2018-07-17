@@ -30,7 +30,7 @@ public class UDPCoreRunner {
         System.out.println("UDP server is running... ");
         byte[] receiveData = new byte[49];
 
-        Injector injector = Guice.createInjector(AppInjector.defaultInjector());
+        Injector injector = AppInjector.getInjector();
         IUDPCoreApplication coreApplication = injector.getInstance(IUDPCoreApplication.class);
 
         ExecutorService exec = Executors.newFixedThreadPool(UDPCoreConfig.getConfig().get("maxPoolSize").asInt());

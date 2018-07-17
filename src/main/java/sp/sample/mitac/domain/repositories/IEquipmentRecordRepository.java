@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IEquipmentRecordRepository {
     void save(EquipmentRecord record) throws CustomException;
-    List<EquipmentRecord> findAllByType(String equipmentType) throws CustomException;
+    List<EquipmentRecord> findAllByType(int typeId) throws CustomException;
 }

@@ -1,11 +1,14 @@
 package sp.sample.mitac;
 
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import io.vertx.config.ConfigRetriever;
 import io.vertx.config.ConfigRetrieverOptions;
 import io.vertx.config.ConfigStoreOptions;
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
+import sp.sample.mitac.bootstrap.AppInjector;
 import sp.sample.mitac.bootstrap.HttpCoreVerticle;
 import sp.sample.mitac.bootstrap.UDPCoreRunner;
 
@@ -34,6 +37,7 @@ public class App
             return;
         }
         Vertx vx = Vertx.vertx();
+
         _initConfig(vx, configPath).getConfig(cfg -> {
             if (cfg.failed()) {
                 System.out.println("Fail to set configs");

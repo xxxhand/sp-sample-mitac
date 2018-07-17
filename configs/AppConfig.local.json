@@ -1,6 +1,12 @@
 {
   "coreModule": {
-    "httpPort": 8080
+    "httpPort": 8080,
+    "databases": {
+      "main_mongo": {
+        "uri": "mongodb://nserviceuser:nservice!User@10.57.35.42:37017/nservice",
+        "dbName": "nservice"
+      }
+    }
   },
   "udpModule": {
     "udpPort": 5033,

@@ -8,6 +8,14 @@ public class EquipmentRecord {
     private int typeId;
     private Map<String, ReceiveData> data;
 
+    public String getEquipmentName() {
+        return equipmentName;
+    }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
     public Map<String, ReceiveData> getData() {
         return data;
     }
