@@ -1,6 +1,7 @@
 package sp.sample.mitac.bootstrap;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -22,31 +23,36 @@ import sp.sample.mitac.infra.repositories.EquipmentRecordRepository;
 import sp.sample.mitac.infra.tools.MongoDBConnector;
 import sp.sample.mitac.shared.CustomJson;
 import sp.sample.mitac.shared.HttpCoreConfig;
+import sp.sample.mitac.shared.UDPCoreConfig;
 import sp.sample.mitac.shared.interfaces.IJsonClient;
 
+import java.io.File;
+import java.io.IOException;
+
 public class AppInjector extends AbstractModule {
-    private static AppInjector appInjector = null;
-    private static Injector injector = null;
-
-
-    public static void setInjector(Injector injector) { injector = injector; }
-    public static Injector getInjector() { return injector; }
-
-    public static AppInjector initialize(Vertx vertx) {
-        if (appInjector == null) {
-            appInjector = new AppInjector(vertx);
-        }
-
-        return appInjector;
-    }
     
     private Vertx vertx;
-    private AppInjector(Vertx vertx) {
+    private File configFile;
+
+    public AppInjector(Vertx vertx, File configFile) {
         this.vertx = vertx;
+        this.configFile = configFile;
     }
 
     @Override
     protected void configure() {
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode appConfig;
+        try {
+            appConfig = mapper.readTree(this.configFile);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return;
+        }
+
+        HttpCoreConfig.setConfig(appConfig.get("coreModule"));
+        UDPCoreConfig.setConfig(appConfig.get("udpModule"));
 
         bind(Vertx.class).toInstance(this.vertx);
         bind(IJsonClient.class).toInstance(CustomJson.defaultSerializer());

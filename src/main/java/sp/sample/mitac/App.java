@@ -10,6 +10,7 @@ import io.vertx.core.Vertx;
 import io.vertx.core.json.JsonObject;
 import sp.sample.mitac.bootstrap.AppInjector;
 import sp.sample.mitac.bootstrap.HttpCoreVerticle;
+import sp.sample.mitac.bootstrap.InjectorFactory;
 import sp.sample.mitac.bootstrap.UDPCoreRunner;
 
 import java.io.File;
@@ -36,7 +37,10 @@ public class App
             System.out.print("Not found config file at: " + configPath);
             return;
         }
+
         Vertx vx = Vertx.vertx();
+
+        InjectorFactory.create(vx, configFile);
 
         _initConfig(vx, configPath).getConfig(cfg -> {
             if (cfg.failed()) {
@@ -59,7 +63,7 @@ public class App
 
 
         try {
-            new UDPCoreRunner(configFile).run();
+            new UDPCoreRunner().run();
         } catch (Exception ex) {
             ex.printStackTrace();
         }

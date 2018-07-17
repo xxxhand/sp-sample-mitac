@@ -21,7 +21,7 @@ public class HttpCoreVerticle extends AbstractVerticle {
         opt.setPort(HttpCoreConfig.getConfig().get("httpPort").asInt());
 
         vertx.createHttpServer(opt)
-                .requestHandler(new HttpCoreRouter(vertx).getMainRouter()::accept)
+                .requestHandler(new HttpCoreRouter().getMainRouter()::accept)
                 .listen(x -> {
                     if (x.succeeded()) {
                         System.out.println("Http server up on " + x.result().actualPort());
