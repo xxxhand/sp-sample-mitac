@@ -1,6 +1,8 @@
 package sp.sample.mitac.domain.factories;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import org.mariuszgromada.math.mxparser.Expression;
+import org.mariuszgromada.math.mxparser.Function;
 import sp.sample.mitac.domain.factories.interfaces.IEquipmentRecordFactory;
 import sp.sample.mitac.domain.valueObjects.EquipmentRecord;
 import sp.sample.mitac.domain.valueObjects.ReceiveData;
@@ -25,6 +27,7 @@ public class EquipmentRecordFactory implements IEquipmentRecordFactory {
 
     @Override
     public EquipmentRecord create(int typeId, int[] msg) throws CustomException {
+        System.out.println(typeId);
         final JsonNode equipmentAryNode = UDPCoreConfig.getConfig().get("equipments");
         JsonNode equipmentNode = null;
         for (JsonNode eNode: equipmentAryNode) {
@@ -44,6 +47,7 @@ public class EquipmentRecordFactory implements IEquipmentRecordFactory {
         String fieldName;
         JsonNode fieldNode;
         JsonNode valueIndexesNode;
+        JsonNode formulaNode;
         int nodeIndex = 0;
         ReceiveData receiveData;
 
@@ -51,11 +55,26 @@ public class EquipmentRecordFactory implements IEquipmentRecordFactory {
             fieldName = fieldNames.next();
             fieldNode = dataNode.get(fieldName);
             valueIndexesNode = fieldNode.get("valueIndexes");
+            formulaNode = fieldNode.get("formula");
 
             double val = 0;
-            for (JsonNode vd: valueIndexesNode) {
-                val += msg[vd.asInt()];
+            if (formulaNode == null) {
+                for (JsonNode vd: valueIndexesNode) {
+                    val += msg[vd.asInt()];
+                }
+            } else {
+                Function F = new Function(formulaNode.asText());
+                StringBuilder sb = new StringBuilder("F(");
+                for (JsonNode vd: valueIndexesNode) {
+                    sb.append(msg[vd.asInt()]);
+                    sb.append(",");
+                }
+                sb.deleteCharAt(sb.lastIndexOf(","));
+                sb.append(")");
+                Expression e1 = new Expression(sb.toString(), F);
+                val = e1.calculate();
             }
+
 
             receiveData = new ReceiveData.Builder()
                     .withNumber(nodeIndex)

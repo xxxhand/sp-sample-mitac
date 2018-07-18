@@ -3,7 +3,7 @@
     "httpPort": 8080,
     "databases": {
       "main_mongo": {
-        "uri": "mongodb://nserviceuser:nservice!User@ds023303.mlab.com:23303/nservice",
+        "uri": "mongodb://nserviceuser:nservice!User@10.57.35.42:37017/nservice",
         "dbName": "nservice"
       }
     }
@@ -62,14 +62,17 @@
           },
           "temperature": {
             "valueIndexes": [12, 13],
+            "formula": "F(a, b) = (a + b) * 100",
             "unit": "°C"
           },
           "humidity": {
             "valueIndexes": [14, 15],
+            "formula": "F(a, b) = (a + b) * 100",
             "unit": "%RH"
           },
           "CO2": {
             "valueIndexes": [16, 17],
+            "formula": "F(a, b) = (a + b)",
             "unit": "ppm"
           }
         }
@@ -84,14 +87,17 @@
           },
           "temperature": {
             "valueIndexes": [12, 13],
+            "formula": "F(a, b) = (a + b) * 100",
             "unit": "°C"
           },
           "humidity": {
             "valueIndexes": [14, 15],
+            "formula": "F(a, b) = (a + b) * 100",
             "unit": "%RH"
           },
           "voltage": {
             "valueIndexes": [16, 17],
+            "formula": "F(a, b) = (a + b) * 1000",
             "unit": "V"
           }
         }

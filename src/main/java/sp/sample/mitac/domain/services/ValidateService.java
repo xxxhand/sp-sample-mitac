@@ -6,7 +6,7 @@ import sp.sample.mitac.shared.CustomException;
 public class ValidateService implements IValidateService {
 
     @Override
-    public boolean checkCRC(int[] msg) throws CustomException {
+    public boolean checkCRC(byte[] msg) throws CustomException {
 
         return true;
     }

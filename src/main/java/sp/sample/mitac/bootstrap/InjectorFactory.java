@@ -11,9 +11,11 @@ import java.io.File;
  */
 public class InjectorFactory {
     private static Injector injector = null;
-    public static void create(Vertx vertx, File configFile) {
+    public static synchronized void create(Vertx vertx, File configFile) {
         if (injector == null) {
-            injector = Guice.createInjector(new AppInjector(vertx, configFile));
+            synchronized (Injector.class) {
+                injector = Guice.createInjector(new AppInjector(vertx, configFile));
+            }
         }
     }
     public static Injector getInjector() { return injector; }

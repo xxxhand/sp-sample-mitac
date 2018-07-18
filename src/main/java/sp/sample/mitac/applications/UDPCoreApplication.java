@@ -29,15 +29,14 @@ public class UDPCoreApplication implements IUDPCoreApplication {
     @Override
     public void execute(byte[] msg) {
         try {
+            if (!this.validateService.checkCRC(msg)) {
+                throw new CustomException(CustomCode.CRC_INVALID);
+            }
 
             int[] msgAry = new int[msg.length];
             int i = 0;
             for (byte b : msg)
                 msgAry[i++] = b & 0xff;
-
-            if (!this.validateService.checkCRC(msgAry)) {
-                throw new CustomException(CustomCode.CRC_INVALID);
-            }
 
             this.equipmentRecordRepository.save(this.equipmentRecordFactory.create(msgAry[9], msgAry));
 

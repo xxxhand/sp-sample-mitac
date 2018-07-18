@@ -21,13 +21,13 @@ public class UDPCoreRunner {
     public void run() throws Exception {
         DatagramSocket socketServer = new DatagramSocket(UDPCoreConfig.getConfig().get("udpPort").asInt());
         System.out.println("UDP server is running... ");
-        byte[] receiveData = new byte[49];
+//        byte[] receiveData = new byte[49];
 
         IUDPCoreApplication coreApplication = injector.getInstance(IUDPCoreApplication.class);
 
         ExecutorService exec = Executors.newFixedThreadPool(UDPCoreConfig.getConfig().get("maxPoolSize").asInt());
         while (true) {
-            DatagramPacket receivePacket = new DatagramPacket(receiveData, receiveData.length);
+            DatagramPacket receivePacket = new DatagramPacket(new byte[49], 49);
             socketServer.receive(receivePacket);
             CompletableFuture.runAsync(() -> coreApplication.execute(receivePacket.getData()), exec);
         }
