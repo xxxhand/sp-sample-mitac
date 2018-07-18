@@ -3,7 +3,7 @@
     "httpPort": 8080,
     "databases": {
       "main_mongo": {
-        "uri": "mongodb://nserviceuser:nservice!User@10.57.35.42:37017/nservice",
+        "uri": "mongodb://nserviceuser:nservice!User@ds023303.mlab.com:23303/nservice",
         "dbName": "nservice"
       }
     }
