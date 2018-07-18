@@ -19,7 +19,7 @@ import java.util.Map;
 public class EquipmentRecordFactory implements IEquipmentRecordFactory {
 
     @Override
-    public EquipmentRecord create(int typeId, int[] msg) throws CustomException {
+    public EquipmentRecord create(int typeId, double[] msg) throws CustomException {
 //        System.out.println(typeId);
         final JsonNode equipmentAryNode = UDPCoreConfig.getConfig().get("equipments");
         JsonNode equipmentNode = null;

@@ -33,12 +33,12 @@ public class UDPCoreApplication implements IUDPCoreApplication {
                 throw new CustomException(CustomCode.CRC_INVALID);
             }
 
-            int[] msgAry = new int[msg.length];
+            double[] msgAry = new double[msg.length];
             int i = 0;
             for (byte b : msg)
                 msgAry[i++] = b & 0xff;
 
-            this.equipmentRecordRepository.save(this.equipmentRecordFactory.create(msgAry[9], msgAry));
+            this.equipmentRecordRepository.save(this.equipmentRecordFactory.create((int) msgAry[9], msgAry));
 
         } catch (CustomException ex) {
             ex.printStackTrace();

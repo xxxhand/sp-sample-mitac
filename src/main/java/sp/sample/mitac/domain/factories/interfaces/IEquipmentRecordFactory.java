@@ -4,5 +4,5 @@ import sp.sample.mitac.domain.valueObjects.EquipmentRecord;
 import sp.sample.mitac.shared.CustomException;
 
 public interface IEquipmentRecordFactory {
-    EquipmentRecord create(int typeId, int[] msg) throws CustomException;
+    EquipmentRecord create(int typeId, double[] msg) throws CustomException;
 }
