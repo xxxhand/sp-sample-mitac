@@ -18,16 +18,9 @@ import java.util.Map;
 
 public class EquipmentRecordFactory implements IEquipmentRecordFactory {
 
-    private IJsonClient jsonClient;
-
-    @Inject
-    public EquipmentRecordFactory(IJsonClient jsonClient) {
-        this.jsonClient = jsonClient;
-    }
-
     @Override
     public EquipmentRecord create(int typeId, int[] msg) throws CustomException {
-        System.out.println(typeId);
+//        System.out.println(typeId);
         final JsonNode equipmentAryNode = UDPCoreConfig.getConfig().get("equipments");
         JsonNode equipmentNode = null;
         for (JsonNode eNode: equipmentAryNode) {
